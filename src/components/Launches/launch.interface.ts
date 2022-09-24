@@ -1,14 +1,11 @@
-interface Mass {
-    kg: number;
-}
-interface RocketDetail {
-    country: string;
-    mass: Mass
-}
-
 interface Rocket {
     rocket_name: number;
-    rocket: RocketDetail
+    rocket: {
+        country: string;
+        mass: {
+            kg: number;
+        }
+    }
 }
 
 export interface Launch {

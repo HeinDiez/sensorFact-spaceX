@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <CssBaseline />
-      <Launches />
+        <Launches />
     </div>
   );
 }

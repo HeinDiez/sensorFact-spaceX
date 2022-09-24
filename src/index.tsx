@@ -4,12 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ApolloProvider } from '@apollo/client';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-
-const client = new ApolloClient({
-    uri: "https://api.spacex.land/graphql/",
-    cache: new InMemoryCache(),
-})
+import client from './services/apollo';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
