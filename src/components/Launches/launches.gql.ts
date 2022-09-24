@@ -16,6 +16,16 @@ export const GET_LAUNCHES = gql`
             details
             launch_success
             mission_name
+            links {
+                flickr_images
+                mission_patch
+                mission_patch_small
+                presskit
+            }
+            launch_site {
+                site_name_long
+            }
+            launch_date_utc
         }
     }
 `

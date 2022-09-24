@@ -1,13 +1,13 @@
 import React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Launches from './components/Launches/Launches';
+import ThemeCustomization from './themes';
 
 function App() {
   return (
-    <div>
-      <CssBaseline />
+    <ThemeCustomization>
         <Launches />
-    </div>
+    </ThemeCustomization>
   );
 }
 
