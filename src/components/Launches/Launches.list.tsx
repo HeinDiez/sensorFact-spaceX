@@ -5,8 +5,13 @@ import { Launch, LaunchListProps, LaunchList } from './launches.interface';
 import { COMM } from '../../helpers/common';
 import { axiosInstance } from '../../services/axios';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import ScaleIcon from '@mui/icons-material/Scale';
+import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
+import LaunchesModal from './Launches.modal';
 
 function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
+    const [modal, setModal] = useState<boolean>(false);
+    const [calculatedLaunch, setCalculatedLaunch] = useState<Launch[]>([]);
     const [rocketToEstimate, setRocketToEstimate] = useState<Launch[]>([]);
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setLimit(parseInt(event.target.value, 10));
@@ -23,14 +28,19 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
         setRocketToEstimate(newArr);
     };
     const sendForEstimation = () => {
-        axiosInstance
-            .post<String>('/fetch', { data: rocketToEstimate })
-            .then((res: any) => {
-                console.log(res, 'check res');
-            })
-            .catch((err: any) => {
-                console.log(err, 'check error');
-            });
+        if (rocketToEstimate.length) {
+            setModal(true);
+            axiosInstance
+                .post('/fetch', { data: rocketToEstimate })
+                .then((res: any) => {
+                    setCalculatedLaunch(res.data);
+                })
+                .catch((err: any) => {
+                    console.log(err, 'check error');
+                });
+        } else {
+            console.log('Please select a Launch Mission to start calculation.');
+        }
     };
     return (
         <MUI.Card className="card-box">
@@ -57,7 +67,12 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
                                     <div>
                                         <MUI.Card className="card-transparent mb-3 mb-sm-0">
                                             <a href="#/" onClick={(e) => e.preventDefault()} className="card-img-wrapper card-box-hover-rise rounded-sm">
-                                                <img alt="..." className="card-img-top rounded-sm" src={launch.links.flickr_images[0]} style={{ width: 140, height: 100 }} />
+                                                <img
+                                                    alt="..."
+                                                    className="card-img-top rounded-sm"
+                                                    src={launch.links.flickr_images.length ? launch.links.flickr_images[0] : launch.links.mission_patch_small}
+                                                    style={{ width: 140, height: 100 }}
+                                                />
                                             </a>
                                         </MUI.Card>
                                     </div>
@@ -70,9 +85,19 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
                                     </div>
                                 </div>
                                 <div className="d-flex align-items-center">
+                                    <ScaleIcon />
+
                                     <div className="text-right pl-3">
-                                        <span className="font-weight-bold font-size-lg">{launch.rocket.rocket.mass.kg} kg</span>
+                                        <span className="font-weight-bold font-size-md">{COMM.formatNumber(launch.rocket.rocket.mass.kg)} kg</span>
                                         <span className="text-black-50 d-block">Mass</span>
+                                    </div>
+                                </div>
+                                <div className="d-flex align-items-center">
+                                    <LocalGasStationIcon />
+
+                                    <div className="text-right pl-3">
+                                        <span className="font-weight-bold font-size-md">{COMM.formatNumber(launch.rocket.rocket.second_stage.fuel_amount_tons)} tons</span>
+                                        <span className="text-black-50 d-block">Fuel</span>
                                     </div>
                                 </div>
                                 <div className="d-flex align-items-center">
@@ -115,6 +140,7 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
                         </MUI.TableFooter>
                     </MUI.Table>
                 </MUI.TableContainer>
+                <LaunchesModal open={modal} onClose={setModal} calculatedLaunch={calculatedLaunch} />
             </div>
         </MUI.Card>
     );

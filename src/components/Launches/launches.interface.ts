@@ -28,6 +28,7 @@ export interface Launch {
         site_name_long: string;
     };
     launch_date_utc: string;
+    energyValue?: number;
 }
 
 export interface LaunchList {
@@ -40,4 +41,10 @@ export interface LaunchListProps {
     variables: {
         limit: number;
     };
+}
+
+export interface LaunchModalProps {
+    open: boolean;
+    onClose: any;
+    calculatedLaunch: Launch[];
 }
