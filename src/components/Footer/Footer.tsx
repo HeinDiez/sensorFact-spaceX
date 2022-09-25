@@ -1,7 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
-import * as MUI from '@mui/material';
-import { NavLink } from 'react-router-dom';
 
 export default function Footer() {
     return (

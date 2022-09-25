@@ -1,6 +1,6 @@
 import React from 'react';
 import * as MUI from '@mui/material';
-import { LaunchList, Launch, LaunchListProps } from './launches.interface';
+import { Launch, LaunchListProps } from './launches.interface';
 
 function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
