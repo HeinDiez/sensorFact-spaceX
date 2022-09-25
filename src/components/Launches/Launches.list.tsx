@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import * as MUI from '@mui/material';
 import { Link } from 'react-router-dom';
-import { Launch, LaunchListProps, LaunchList } from './launches.interface';
+import { Launch, LaunchListProps } from './launches.interface';
 import { COMM } from '../../helpers/common';
 import { axiosInstance } from '../../services/axios';
+import { useSnackbar } from 'notistack';
+
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ScaleIcon from '@mui/icons-material/Scale';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
+import CalculateIcon from '@mui/icons-material/Calculate';
 import LaunchesModal from './Launches.modal';
 
 function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
+    const { enqueueSnackbar } = useSnackbar();
     const [modal, setModal] = useState<boolean>(false);
     const [calculatedLaunch, setCalculatedLaunch] = useState<Launch[]>([]);
     const [rocketToEstimate, setRocketToEstimate] = useState<Launch[]>([]);
@@ -36,10 +40,10 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
                     setCalculatedLaunch(res.data);
                 })
                 .catch((err: any) => {
-                    console.log(err, 'check error');
+                    enqueueSnackbar(`Error 23-69: Something when wrong. Please try again. ${err}`, { variant: 'error' });
                 });
         } else {
-            console.log('Please select a Launch Mission to start calculation.');
+            enqueueSnackbar(`Please select a Launch Mission to start calculation.`, { variant: 'error' });
         }
     };
     return (
@@ -51,7 +55,10 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
                 </div>
                 <div className="card-header--actions">
                     <MUI.Button onClick={sendForEstimation} size="small" className="btn-neutral-primary p-3">
-                        Calculate Energy Consumption
+                        <span className="btn-wrapper--icon">
+                            <CalculateIcon />
+                        </span>
+                        <span className="btn-wrapper--label">Calculate Energy Consumption</span>
                     </MUI.Button>
                 </div>
             </div>
@@ -70,14 +77,14 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
                                                 <img
                                                     alt="..."
                                                     className="card-img-top rounded-sm"
-                                                    src={launch.links.flickr_images.length ? launch.links.flickr_images[0] : launch.links.mission_patch_small}
+                                                    src={launch.links && launch.links.flickr_images ? launch.links.flickr_images[0] : launch.links && launch.links.mission_patch_small}
                                                     style={{ width: 140, height: 100 }}
                                                 />
                                             </a>
                                         </MUI.Card>
                                     </div>
                                     <div className="pl-0 pl-sm-4">
-                                        <b className="font-weight-bold font-size-lg text-black">{launch.mission_name}</b>
+                                        <b className="font-weight-bold font-size-sm text-black">{launch.mission_name}</b>
                                         <p className="text-black-50 mb-0"></p>
                                         <small className="text-black-50 pt-1 d-block">
                                             Launch Date on: <b className="text-first">{COMM.DdMmmYyyy(launch.launch_date_utc)}</b>
@@ -86,18 +93,14 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
                                 </div>
                                 <div className="d-flex align-items-center">
                                     <ScaleIcon />
-
                                     <div className="text-right pl-3">
-                                        <span className="font-weight-bold font-size-md">{COMM.formatNumber(launch.rocket.rocket.mass.kg)} kg</span>
-                                        <span className="text-black-50 d-block">Mass</span>
+                                        <span className="font-weight-bold font-size-sm text-black-50">{COMM.formatNumber(launch.rocket.rocket.mass.kg)} kg</span>
                                     </div>
                                 </div>
                                 <div className="d-flex align-items-center">
                                     <LocalGasStationIcon />
-
                                     <div className="text-right pl-3">
-                                        <span className="font-weight-bold font-size-md">{COMM.formatNumber(launch.rocket.rocket.second_stage.fuel_amount_tons)} tons</span>
-                                        <span className="text-black-50 d-block">Fuel</span>
+                                        <span className="font-weight-bold font-size-sm text-black-50">{COMM.formatNumber(launch.rocket.rocket.second_stage.fuel_amount_tons)} tons</span>
                                     </div>
                                 </div>
                                 <div className="d-flex align-items-center">

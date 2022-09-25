@@ -2,6 +2,8 @@ import React from 'react';
 import * as MUI from '@mui/material';
 import { LaunchModalProps } from './launches.interface';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import ScaleIcon from '@mui/icons-material/Scale';
+import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import { COMM } from '../../helpers/common';
 
 export default function LaunchesModal({ onClose, open, calculatedLaunch }: LaunchModalProps) {
@@ -11,13 +13,13 @@ export default function LaunchesModal({ onClose, open, calculatedLaunch }: Launc
     return (
         <div>
             <MUI.Dialog scroll="body" maxWidth="md" open={open} onClose={onCloseHandler} classes={{ paper: 'w-100 rounded shadow-sm-dark border-0 bg-white' }}>
-                <div className="hero-wrapper bg-composed-wrapper bg-ripe-malin h-100 rounded-top">
+                <div className="hero-wrapper bg-composed-wrapper bg-arielle-smile h-100 rounded-top">
                     <div className="flex-grow-1 w-100 d-flex align-items-center">
                         <div className="bg-composed-wrapper--bg bg-second opacity-3 rounded-top" />
                         <div className="bg-composed-wrapper--content text-center pt-5">
                             <div className="text-white">
-                                <h1 className="display-3 my-3 font-weight-bold">Energy estimation</h1>
-                                <p className="font-size-lg mb-0 px-4 text-white-50">Estimated total energy usage for a selection of launches</p>
+                                <h1 className="display-3 my-3 font-weight-bold">Energy Consumption</h1>
+                                <p className="font-size-lg mb-0 px-4 text-white-50">The estimated total energy usage for the selected launches</p>
                             </div>
                         </div>
                     </div>
@@ -26,10 +28,12 @@ export default function LaunchesModal({ onClose, open, calculatedLaunch }: Launc
                     <MUI.Card className="card-box">
                         <div className="card-header">
                             <div className="card-header--title">
-                                <h4 className="font-size-lg mb-0 py-2 font-weight-bold">Estimated Calculation for the Following Launch</h4>
+                                <h4 className="font-size-lg mb-0 py-2 font-weight-bold">Launch Mission</h4>
                             </div>
                             <div className="card-header--actions">
-                                <div></div>
+                                <div>
+                                    <h5 className="font-size-lg mb-0 py-2 text-success">Consumption</h5>
+                                </div>
                             </div>
                         </div>
                         <MUI.CardContent>
@@ -40,7 +44,7 @@ export default function LaunchesModal({ onClose, open, calculatedLaunch }: Launc
                                             <div className="d-flex align-items-center">
                                                 <div className="avatar-icon-wrapper mr-2">
                                                     <div className="avatar-icon">
-                                                        <img alt="..." src={claunch.links.mission_patch_small} />
+                                                        <img alt="..." src={claunch.links && claunch.links.mission_patch_small} />
                                                     </div>
                                                 </div>
                                                 <div>
@@ -48,6 +52,22 @@ export default function LaunchesModal({ onClose, open, calculatedLaunch }: Launc
                                                         {claunch.mission_name}
                                                     </a>
                                                     <span className="text-black-50 d-block">{claunch.rocket.rocket_name}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="d-flex align-items-center">
+                                            <div className="d-flex align-items-center">
+                                                <ScaleIcon />
+                                                <div className="text-right pl-3">
+                                                    <span className="font-weight-bold font-size-sm text-black-50">{COMM.formatNumber(claunch.rocket.rocket.mass.kg)} kg</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="d-flex align-items-center">
+                                            <div className="d-flex align-items-center">
+                                                <LocalGasStationIcon />
+                                                <div className="text-right pl-3">
+                                                    <span className="font-weight-bold font-size-sm text-black-50">{COMM.formatNumber(claunch.rocket.rocket.second_stage.fuel_amount_tons)} tons</span>
                                                 </div>
                                             </div>
                                         </div>

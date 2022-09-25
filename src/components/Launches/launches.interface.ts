@@ -18,8 +18,8 @@ export interface Launch {
     launch_success: string;
     mission_name: string;
     rocket: Rocket;
-    links: {
-        flickr_images: string;
+    links?: {
+        flickr_images?: string[];
         mission_patch: string;
         mission_patch_small: string;
         presskit: string;
