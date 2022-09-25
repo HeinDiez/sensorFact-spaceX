@@ -9,12 +9,12 @@ export default function Header() {
             <MUI.Container>
                 <div className="bg-white-10 p-2 header-nav-wrapper header-nav-wrapper-xl rounded px-4 navbar-dark">
                     <div className="app-nav-logo">
-                        <a href="#/" onClick={e => e.preventDefault()} title="SensorFort Assignment" className="app-nav-logo">
+                        <a href="#/" onClick={(e) => e.preventDefault()} title="SensorFort Assignment" className="app-nav-logo">
                             <div className="app-nav-logo--icon rounded-sm">
                                 <img alt="Space X Exploration" src={rocket} />
                             </div>
                             <div className="app-nav-logo--text">
-                                <span>Exploration</span>
+                                <span>SensorFort</span>
                                 <b>Space X</b>
                             </div>
                         </a>

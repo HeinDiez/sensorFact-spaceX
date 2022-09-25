@@ -3,6 +3,7 @@ import * as MUI from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Launch, LaunchListProps, LaunchList } from './launches.interface';
 import { COMM } from '../../helpers/common';
+import { axiosInstance } from '../../services/axios';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
 function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
@@ -20,10 +21,16 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
             });
         }
         setRocketToEstimate(newArr);
-        console.log(event.target.checked, 'check here');
     };
     const sendForEstimation = () => {
-        console.log('check here', rocketToEstimate);
+        axiosInstance
+            .post<String>('/fetch', { data: rocketToEstimate })
+            .then((res: any) => {
+                console.log(res, 'check res');
+            })
+            .catch((err: any) => {
+                console.log(err, 'check error');
+            });
     };
     return (
         <MUI.Card className="card-box">
@@ -34,7 +41,7 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
                 </div>
                 <div className="card-header--actions">
                     <MUI.Button onClick={sendForEstimation} size="small" className="btn-neutral-primary p-3">
-                        Calculate Fuel consumption
+                        Calculate Energy Consumption
                     </MUI.Button>
                 </div>
             </div>
