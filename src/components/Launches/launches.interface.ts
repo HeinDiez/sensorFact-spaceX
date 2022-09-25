@@ -1,9 +1,13 @@
 interface Rocket {
     rocket_name: number;
     rocket: {
+        name: string;
         country: string;
         mass: {
             kg: number;
+        };
+        second_stage: {
+            fuel_amount_tons: number;
         };
     };
 }

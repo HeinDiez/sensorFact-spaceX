@@ -6,24 +6,19 @@ export const GET_LAUNCHES = gql`
             rocket {
                 rocket_name
                 rocket {
-                    country
                     mass {
                         kg
+                    }
+                    second_stage {
+                        fuel_amount_tons
                     }
                 }
             }
             id
-            details
-            launch_success
             mission_name
             links {
                 flickr_images
-                mission_patch
                 mission_patch_small
-                presskit
-            }
-            launch_site {
-                site_name_long
             }
             launch_date_utc
         }
@@ -37,8 +32,12 @@ export const GET_LAUNCH = gql`
                 rocket_name
                 rocket {
                     country
+                    name
                     mass {
                         kg
+                    }
+                    second_stage {
+                        fuel_amount_tons
                     }
                 }
             }
