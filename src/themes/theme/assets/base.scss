@@ -1,93 +1,29 @@
 // Core
 
-@import "core";
-
-// Fonts
-
-@import url('https://fonts.googleapis.com/css?family=Heebo:400,700&display=swap');
-@font-face {
-  font-family: 'Poppins-Regular';
-  src:url('../assets/fonts/Poppins-Regular/Poppins-Regular.woff') format('woff'),
-      url('../assets/fonts/Poppins-Regular/Poppins-Regular.woff2') format('woff2'),
-      url('../assets/fonts/Poppins-Regular/Poppins-Regular.eot'),
-      url('../assets/fonts/Poppins-Regular/Poppins-Regular.eot?#iefix') format('embedded-opentype'),
-      url('../assets/fonts/Poppins-Regular/Poppins-Regular.ttf') format('truetype');
-
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-// @font-face {
-//   font-family: '';
-//   src:url('../assets/fonts/Resolve-Light/Resolve-Light.woff') format('woff'),
-//       url('../assets/fonts/Resolve-Light/Resolve-Light.woff2') format('woff2'),
-//       url('../assets/fonts/Resolve-Light/Resolve-Light.eot'),
-//       url('../assets/fonts/Resolve-Light/Resolve-Light.eot?#iefix') format('embedded-opentype'),
-//       url('../assets/fonts/Resolve-Light/Resolve-Light.otf') format('truetype');
-
-//   font-weight: normal;
-//   font-style: normal;
-//   font-display: swap;
-// }
-// @font-face {
-//   font-family: 'MrEavesXLModNarOT';
-//   src: url("../assets/fonts/MrEavesXLModNarOT-Bold.ttf")
-// }
-// @font-face {
-//     font-family: 'PublicSans';
-//     src: url("../assets/fonts/Public_Sans/PublicSans-Bold.ttf")
-//   }
-// @font-face {
-//   font-family: 'Warownia';
-//   src: url("../assets/fonts/Warownia/WarowniaExt.otf")
-// }
-// @font-face {
-//   font-family: 'WarowniaExt';
-//   src:url('../assets/fonts/Warownia/WarowniaExt.woff') format('woff'),
-//       url('../assets/fonts/Warownia/WarowniaExt.woff2') format('woff2'),
-//       url('../assets/fonts/Warownia/WarowniaExt.eot'),
-//       url('../assets/fonts/Warownia/WarowniaExt.eot?#iefix') format('embedded-opentype'),
-//       url('../assets/fonts/Warownia/WarowniaExt.otf') format('truetype');
-//   font-weight: normal;
-//   font-style: normal;
-//   font-display: swap;
-// }
-
-@import "custom";
-
-// Widgets
-
-@import "widgets";
+@import 'core';
 
 // Components
 
-@import "components";
+@import 'components';
 
 // Layout Components
 
-@import "layout-components";
-
-// Layout Blueprints
-
-@import "layout-blueprints";
-
+@import 'layout-components';
 
 .fade-enter {
-  opacity: 0.01;
+    opacity: 0.01;
 }
 
 .fade-enter.fade-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
+    opacity: 1;
+    transition: opacity 500ms ease-in;
 }
 
 .fade-exit {
-  opacity: 1;
+    opacity: 1;
 }
 
 .fade-exit.fade-exit-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
 }
-
-

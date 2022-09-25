@@ -1,16 +1,12 @@
-//  Core
-
-@use 'sass:math';
-
 .app-footer {
-    height: $footer-height;
+    height: 60px;
     display: flex;
     align-items: center;
-    background: $footer-bg;
+    background: #fff;
     width: 100%;
-    padding: 0 $layout-spacer;
+    padding: 0 8;
     transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
-    font-size: $font-size-sm;
+    font-size: 18px;
     justify-content: space-between;
 
     .MuiList-root {

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import * as MUI from '@mui/material';
+// import * as MUI from '@mui/material';
 
 import { useQuery } from '@apollo/client';
 import { GET_LAUNCHES } from './launches.gql';
-import { LaunchList, Launch } from './launches.interface';
+import { LaunchList } from './launches.interface';
 
 import LaunchesList from './Launches.list';
 import LaunchesGrid from './Launches.grid';
