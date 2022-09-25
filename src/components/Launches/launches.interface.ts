@@ -4,8 +4,8 @@ interface Rocket {
         country: string;
         mass: {
             kg: number;
-        }
-    }
+        };
+    };
 }
 
 export interface Launch {
@@ -19,10 +19,10 @@ export interface Launch {
         mission_patch: string;
         mission_patch_small: string;
         presskit: string;
-    }
+    };
     launch_site: {
         site_name_long: string;
-    }
+    };
     launch_date_utc: string;
 }
 
@@ -35,5 +35,5 @@ export interface LaunchListProps {
     setLimit: any;
     variables: {
         limit: number;
-    }
+    };
 }

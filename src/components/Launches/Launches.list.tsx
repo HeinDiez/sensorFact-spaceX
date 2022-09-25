@@ -6,7 +6,7 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setLimit(parseInt(event.target.value, 10));
     };
-    return ( 
+    return (
         <MUI.TableContainer component={MUI.Paper}>
             <MUI.Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <MUI.TableHead>
@@ -18,15 +18,18 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
                     </MUI.TableRow>
                 </MUI.TableHead>
                 <MUI.TableBody>
-                    {   launches.map((launch: Launch)=><MUI.TableRow key={launch.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    {launches.map((launch: Launch) => (
+                        <MUI.TableRow key={launch.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <MUI.TableCell component="th" scope="row">
                                 {launch.mission_name}
                             </MUI.TableCell>
-                            <MUI.TableCell align="right">{launch.launch_success ? "Ja": "Nee"}</MUI.TableCell>
+                            <MUI.TableCell align="right">{launch.launch_success ? 'Ja' : 'Nee'}</MUI.TableCell>
                             <MUI.TableCell align="right">{launch.details}</MUI.TableCell>
-                            <MUI.TableCell align="right"><MUI.Button size="small">Learn More</MUI.Button></MUI.TableCell>
+                            <MUI.TableCell align="right">
+                                <MUI.Button size="small">Learn More</MUI.Button>
+                            </MUI.TableCell>
                         </MUI.TableRow>
-                    )}
+                    ))}
                 </MUI.TableBody>
                 <MUI.TableFooter>
                     <MUI.TableRow>
@@ -38,11 +41,11 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
                             page={1}
                             SelectProps={{
                                 inputProps: {
-                                'aria-label': 'rows per page',
+                                    'aria-label': 'rows per page'
                                 },
-                                native: true,
+                                native: true
                             }}
-                            onPageChange={()=>{}}
+                            onPageChange={() => {}}
                             onRowsPerPageChange={handleChangeRowsPerPage}
                             // ActionsComponent={()=>{}}
                         />
@@ -50,7 +53,6 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
                 </MUI.TableFooter>
             </MUI.Table>
         </MUI.TableContainer>
-        
     );
 }
 

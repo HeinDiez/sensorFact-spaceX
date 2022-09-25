@@ -1,0 +1,96 @@
+//  Core
+
+@use "sass:math";
+
+.header-search-wrapper {
+  // border-right: rgba($black, .1) solid 1px;
+  // margin: 0 ($spacer * 2) 0 0;
+  // width: 300px;
+  cursor: pointer;
+
+  .icon-wrapper {
+    @include border-radius($border-radius-lg * 6);
+    padding: ($layout-spacer * .3);
+    position: absolute;
+    background-color: $white;
+    z-index: 10;
+    top: -12px;
+  }
+  .button-wrapper {
+    position: absolute;
+    left: 12px;
+    top: 7px;
+    z-index: 10;
+  }
+
+  .search-wrapper {
+    .MuiFormControl-root {
+      background-color: red;
+      padding: 0;
+      width: 42px;
+      opacity: 0;
+      transition: $transition-base;
+      cursor: pointer;
+    }
+
+    .MuiInputBase-root {
+      height: 36px;
+
+      input {
+        cursor: pointer;
+      }
+    }
+
+    &.is-active {
+      .MuiInputBase-root {
+        input {
+          cursor: text;
+        }
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    border-left: rgba($black, .1) solid 1px;
+    border-right: transparent solid 1px;
+    padding: math.div($spacer, 3.5) ($spacer * 0.5);
+    margin: 0 $spacer;
+  }
+
+  .btn-wrapper--label {
+    font-size: 20px;
+  }
+}
+
+.search-wrapper-open {
+  .header-search-wrapper {
+    border-right-color: transparent;
+
+    .search-wrapper {
+      .MuiFormControl-root {
+        padding: 0;
+        width: 100%;
+        opacity: 1;
+        visibility: visible;
+
+        .MuiInputBase-input {
+          padding-left: 42px;
+        }
+      }
+    }
+  }
+
+  .app-header-menu {
+    transform: scale(0);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  @include media-breakpoint-down(md) {
+    .app-header--pane + .app-header--pane {
+      transform: scale(0);
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}

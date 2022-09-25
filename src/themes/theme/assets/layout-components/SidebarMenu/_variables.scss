@@ -1,0 +1,12 @@
+//  Variables
+
+// General
+
+@use "sass:math";
+
+$sidebar-navlink-height:            44px;
+$sidebar-navlink-inner-height:      36px;
+$sidebar-header-font-size:          math.div($font-size-xs, 1.2);
+$sidebar-navlink-font-size:         $font-size-base * 1.06;
+$sidebar-icon-font-size:            $font-size-lg * 1.3;
+$sidebar-submenu-navlink-font-size: $font-size-xs;

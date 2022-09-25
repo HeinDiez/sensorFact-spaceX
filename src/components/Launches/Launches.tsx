@@ -12,29 +12,28 @@ import LoadingList from '../Loading/Loading.List';
 import Container from '@mui/material/Container';
 
 function Launches() {
-    const [view, setView] = useState("list");
+    const [view, setView] = useState('list');
     const [limit, setLimit] = useState<number>(10);
-    const {error, loading, data } = useQuery<LaunchList>(GET_LAUNCHES, {
+    const { error, loading, data } = useQuery<LaunchList>(GET_LAUNCHES, {
         variables: { limit }
     });
-    if (error){
-        return <div>Something went wrong...</div>
+    if (error) {
+        return <div>Something went wrong...</div>;
     }
-    return ( 
-        <div>
+    return (
+        <div className="py-3">
             <Container>
-                { loading ? 
-                    <LoadingList />:
+                {loading ? (
+                    <LoadingList />
+                ) : (
                     <React.Fragment>
-                        {data && <React.Fragment>
-                            {view === "grid" ?
-                                <LaunchesGrid launches={data.launches}/>:
-                                <LaunchesList launches={data.launches} setLimit={setLimit} variables={{limit}}/>
-                            }
+                        {data && (
+                            <React.Fragment>
+                                {view === 'grid' ? <LaunchesGrid launches={data.launches} /> : <LaunchesList launches={data.launches} setLimit={setLimit} variables={{ limit }} />}
                             </React.Fragment>
-                        }
+                        )}
                     </React.Fragment>
-                }
+                )}
             </Container>
         </div>
     );
