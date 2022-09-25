@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const GET_LAUNCHES = gql`
-    query {
-        launches(limit: 10) {
+    query GetLaunchList($limit: Int!){
+        launches(limit: $limit) {
             rocket {
                 rocket_name
                 rocket {

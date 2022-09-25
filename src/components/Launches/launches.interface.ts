@@ -29,3 +29,11 @@ export interface Launch {
 export interface LaunchList {
     launches: Launch[];
 }
+
+export interface LaunchListProps {
+    launches: Launch[];
+    setLimit: any;
+    variables: {
+        limit: number;
+    }
+}

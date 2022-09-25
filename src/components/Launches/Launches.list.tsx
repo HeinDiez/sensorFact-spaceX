@@ -1,8 +1,11 @@
 import React from 'react';
 import * as MUI from '@mui/material';
-import { LaunchList, Launch } from './launches.interface';
+import { LaunchList, Launch, LaunchListProps } from './launches.interface';
 
-function LaunchesList({ launches }: LaunchList) {
+function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setLimit(parseInt(event.target.value, 10));
+    };
     return ( 
         <MUI.TableContainer component={MUI.Paper}>
             <MUI.Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -25,6 +28,26 @@ function LaunchesList({ launches }: LaunchList) {
                         </MUI.TableRow>
                     )}
                 </MUI.TableBody>
+                <MUI.TableFooter>
+                    <MUI.TableRow>
+                        <MUI.TablePagination
+                            rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                            colSpan={3}
+                            count={100}
+                            rowsPerPage={variables.limit}
+                            page={1}
+                            SelectProps={{
+                                inputProps: {
+                                'aria-label': 'rows per page',
+                                },
+                                native: true,
+                            }}
+                            onPageChange={()=>{}}
+                            onRowsPerPageChange={handleChangeRowsPerPage}
+                            // ActionsComponent={()=>{}}
+                        />
+                    </MUI.TableRow>
+                </MUI.TableFooter>
             </MUI.Table>
         </MUI.TableContainer>
         
