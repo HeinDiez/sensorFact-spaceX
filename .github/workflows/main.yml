@@ -27,7 +27,7 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npm test
-      - uses: HeinDiez/sensorFort-spaceX-assignements3-sync-action@main
+      - uses: HeinDiez/sensorFort-spaceX-assignement@main
         with:
             args: --acl public-read --follow-symlinks --delete
         env:
