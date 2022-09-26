@@ -39,6 +39,14 @@ export interface LaunchListProps {
     launches: Launch[];
     setVariables: any;
     variables: Table;
+    getLaunches: () => void;
+    loading: boolean;
+}
+
+export interface LaunchSortProps {
+    setVariables: any;
+    variables: Table;
+    getLaunches: () => void;
 }
 
 export interface LaunchModalProps {
