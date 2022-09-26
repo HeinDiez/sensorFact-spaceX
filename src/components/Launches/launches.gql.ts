@@ -26,6 +26,14 @@ export const GET_LAUNCHES = gql`
     }
 `;
 
+export const GET_TOTAL_LAUNCHES = gql`
+    query {
+        launches {
+            id
+        }
+    }
+`;
+
 export const GET_LAUNCH = gql`
     query GetLaunch($id: ID!) {
         launch(id: $id) {
