@@ -1,8 +1,9 @@
 import { gql } from '@apollo/client';
 
+// sort: "mission_name", order: "desc", offset: 2, find: { mission_name:  }
 export const GET_LAUNCHES = gql`
-    query GetLaunchList($limit: Int!) {
-        launches(limit: $limit) {
+    query GetLaunchList($limit: Int!, $sort: String, $order: String, $offset: Int!, $find: String) {
+        launches(limit: $limit, sort: $sort, order: $order, offset: $offset, find: { mission_name: $find }) {
             rocket {
                 rocket_name
                 rocket {

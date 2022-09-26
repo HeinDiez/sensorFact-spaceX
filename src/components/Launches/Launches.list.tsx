@@ -9,16 +9,17 @@ import { useSnackbar } from 'notistack';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ScaleIcon from '@mui/icons-material/Scale';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
+import SearchIcon from '@mui/icons-material/Search';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import LaunchesModal from './Launches.modal';
 
-function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
+function LaunchesList({ launches, setVariables, variables }: LaunchListProps) {
     const { enqueueSnackbar } = useSnackbar();
     const [modal, setModal] = useState<boolean>(false);
     const [calculatedLaunch, setCalculatedLaunch] = useState<Launch[]>([]);
     const [rocketToEstimate, setRocketToEstimate] = useState<Launch[]>([]);
     const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setLimit(parseInt(event.target.value, 10));
+        setVariables({ ...variables, limit: event.target.value });
     };
     const onCheckBoxHandler = (event: React.ChangeEvent<HTMLInputElement>, launch: Launch) => {
         let newArr: Launch[] = [...rocketToEstimate];
@@ -46,6 +47,9 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
             enqueueSnackbar(`Please select a Launch Mission to start calculation.`, { variant: 'error' });
         }
     };
+    const onSearchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event.target.value);
+    };
     return (
         <MUI.Card className="card-box">
             <div className="card-header bg-white">
@@ -60,6 +64,23 @@ function LaunchesList({ launches, setLimit, variables }: LaunchListProps) {
                         </span>
                         <span className="btn-wrapper--label">Calculate Energy Consumption</span>
                     </MUI.Button>
+                </div>
+            </div>
+            <div className="card-header bg-white">
+                <div className="search-wrapper">
+                    <MUI.TextField
+                        onChange={onSearchHandler}
+                        variant="outlined"
+                        size="small"
+                        id="input-search"
+                        InputProps={{
+                            startAdornment: (
+                                <MUI.InputAdornment position="start">
+                                    <SearchIcon />
+                                </MUI.InputAdornment>
+                            )
+                        }}
+                    />
                 </div>
             </div>
             <div className="scroll-area-lg shadow-overflow">

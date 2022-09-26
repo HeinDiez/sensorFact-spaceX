@@ -37,14 +37,20 @@ export interface LaunchList {
 
 export interface LaunchListProps {
     launches: Launch[];
-    setLimit: any;
-    variables: {
-        limit: number;
-    };
+    setVariables: any;
+    variables: Table;
 }
 
 export interface LaunchModalProps {
     open: boolean;
     onClose: any;
     calculatedLaunch: Launch[];
+}
+
+export interface Table {
+    limit: number;
+    sort: string;
+    order: string;
+    offset: number;
+    find: string;
 }

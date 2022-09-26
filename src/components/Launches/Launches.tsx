@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_LAUNCHES } from './launches.gql';
-import { LaunchList } from './launches.interface';
+import { LaunchList, Table } from './launches.interface';
 
 import LaunchesList from './Launches.list';
 import LoadingList from '../Loading/Loading.List';
 import Container from '@mui/material/Container';
 
 function Launches() {
-    const [limit, setLimit] = useState<number>(10);
-    const { error, loading, data } = useQuery<LaunchList>(GET_LAUNCHES, {
-        variables: { limit }
+    const [variables, setVariables] = useState<Table>({
+        limit: 10,
+        sort: 'mission_name',
+        order: 'desc',
+        offset: 0,
+        find: ''
     });
+    const { error, loading, data } = useQuery<LaunchList>(GET_LAUNCHES, { variables });
     if (error) {
         return <div>Something went wrong...</div>;
     }
@@ -24,7 +28,7 @@ function Launches() {
                     <React.Fragment>
                         {data && (
                             <React.Fragment>
-                                <LaunchesList launches={data.launches} setLimit={setLimit} variables={{ limit }} />
+                                <LaunchesList launches={data.launches} setVariables={setVariables} variables={variables} />
                             </React.Fragment>
                         )}
                     </React.Fragment>
