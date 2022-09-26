@@ -16,7 +16,6 @@ export default function LaunchDetail() {
     const { error, loading, data } = useQuery<{ launch: Launch }>(GET_LAUNCH, {
         variables: { id }
     });
-    console.log(data, 'check here');
     if (loading) {
         return <div>Loading please wait...</div>;
     }

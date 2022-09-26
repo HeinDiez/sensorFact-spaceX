@@ -5,6 +5,8 @@ import { Launch, LaunchListProps } from './launches.interface';
 import { COMM } from '../../helpers/common';
 import { axiosInstance } from '../../services/axios';
 import { useSnackbar } from 'notistack';
+import { useQuery } from '@apollo/client';
+import { GET_TOTAL_LAUNCHES } from './launches.gql';
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ScaleIcon from '@mui/icons-material/Scale';
@@ -15,18 +17,17 @@ import LaunchesModal from './Launches.modal';
 import LaunchListSort from './Launches.list.sort';
 import LoadingList from '../Loading/Loading.List';
 
-function LaunchesList({ launches, setVariables, variables, getLaunches, loading }: LaunchListProps) {
+function LaunchesList({ launches, setVariables, variables, getLaunches, lazyloading }: LaunchListProps) {
+    const totalCount = useQuery(GET_TOTAL_LAUNCHES);
+    console.log(totalCount, 'totalCount');
     const { enqueueSnackbar } = useSnackbar();
     const [page, setPage] = useState<number>(1);
     const [modal, setModal] = useState<boolean>(false);
     const [calculatedLaunch, setCalculatedLaunch] = useState<Launch[]>([]);
     const [rocketToEstimate, setRocketToEstimate] = useState<Launch[]>([]);
-    // const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    //     setVariables({ ...variables, limit: event.target.value });
-    // };
     const onChangePage = (event: React.ChangeEvent<unknown>, page: number) => {
         setPage(page);
-        setVariables({ ...variables, offset: page * variables.limit });
+        setVariables({ ...variables, offset: (page - 1) * variables.limit });
     };
     const onCheckBoxHandler = (event: React.ChangeEvent<HTMLInputElement>, launch: Launch) => {
         let newArr: Launch[] = [...rocketToEstimate];
@@ -101,7 +102,7 @@ function LaunchesList({ launches, setVariables, variables, getLaunches, loading 
                 <LaunchListSort setVariables={setVariables} variables={variables} getLaunches={getLaunches} />
             </div>
             <div className="scroll-area-lg shadow-overflow">
-                {loading ? (
+                {lazyloading ? (
                     <LoadingList />
                 ) : (
                     <MUI.List component="div" className="list-group-flush">
@@ -162,7 +163,11 @@ function LaunchesList({ launches, setVariables, variables, getLaunches, loading 
             </div>
             <div className="card-footer p-3 border-0 d-flex justify-content-between">
                 <div className="d-flex align-items-center justify-content-center flex-wrap">
-                    <MUI.Pagination className="pagination-secondary" count={variables.limit} onChange={onChangePage} page={page} />
+                    {totalCount.loading ? (
+                        'loading...'
+                    ) : (
+                        <MUI.Pagination className="pagination-secondary" count={Math.ceil(totalCount.data.launches.length / variables.limit)} onChange={onChangePage} page={page} />
+                    )}
                 </div>
                 {/* <MUI.TableContainer>
                     <MUI.Table sx={{ minWidth: 650 }} aria-label="simple table">

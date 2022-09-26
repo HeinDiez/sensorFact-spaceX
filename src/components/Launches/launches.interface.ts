@@ -40,7 +40,7 @@ export interface LaunchListProps {
     setVariables: any;
     variables: Table;
     getLaunches: () => void;
-    loading: boolean;
+    lazyloading: boolean;
 }
 
 export interface LaunchSortProps {

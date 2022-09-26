@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { GET_LAUNCHES } from './launches.gql';
 import { LaunchList, Table } from './launches.interface';
+import { useSnackbar } from 'notistack';
 
 import LaunchesList from './Launches.list';
 import Container from '@mui/material/Container';
 
 function Launches() {
+    const { enqueueSnackbar } = useSnackbar();
     const [variables, setVariables] = useState<Table>({
         limit: 10,
         sort: 'mission_name',
@@ -15,17 +17,16 @@ function Launches() {
         find: ''
     });
     const [getLaunches, { called, error, loading, data }] = useLazyQuery<LaunchList>(GET_LAUNCHES, { variables, fetchPolicy: 'cache-and-network' });
-    console.log({ called, error, loading, data }, 'check lazyloading');
     useEffect(() => {
         getLaunches();
     }, []);
     if (error) {
-        return <div>Something went wrong...</div>;
+        enqueueSnackbar(`Error 7443: ${error}`, { variant: 'error' });
     }
     return (
         <div className="py-3">
             <Container>
-                <LaunchesList launches={data ? data.launches : []} setVariables={setVariables} variables={variables} getLaunches={getLaunches} loading={loading} />
+                <LaunchesList launches={data ? data.launches : []} setVariables={setVariables} variables={variables} getLaunches={getLaunches} lazyloading={loading} />
             </Container>
         </div>
     );
