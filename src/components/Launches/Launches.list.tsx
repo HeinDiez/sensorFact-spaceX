@@ -19,7 +19,6 @@ import LoadingList from '../Loading/Loading.List';
 
 function LaunchesList({ launches, setVariables, variables, getLaunches, lazyloading }: LaunchListProps) {
     const totalCount = useQuery(GET_TOTAL_LAUNCHES);
-    console.log(totalCount, 'totalCount');
     const { enqueueSnackbar } = useSnackbar();
     const [page, setPage] = useState<number>(1);
     const [modal, setModal] = useState<boolean>(false);
