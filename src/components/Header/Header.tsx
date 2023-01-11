@@ -14,7 +14,7 @@ export default function Header() {
                                 <img alt="Space X Exploration" src={rocket} />
                             </div>
                             <div className="app-nav-logo--text">
-                                <span>SensorFort</span>
+                                <span>SensorFact</span>
                                 <b>Space X</b>
                             </div>
                         </a>

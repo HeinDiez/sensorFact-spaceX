@@ -16,7 +16,7 @@ function Launches() {
         offset: 0,
         find: ''
     });
-    const [getLaunches, { called, error, loading, data }] = useLazyQuery<LaunchList>(GET_LAUNCHES, { variables, fetchPolicy: 'cache-and-network' });
+    const [getLaunches, { error, loading, data }] = useLazyQuery<LaunchList>(GET_LAUNCHES, { variables, fetchPolicy: 'cache-and-network' });
     useEffect(() => {
         getLaunches();
     }, []);
