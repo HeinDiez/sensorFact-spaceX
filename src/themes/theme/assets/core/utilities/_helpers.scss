@@ -130,15 +130,15 @@ body {
 
 // Sizing
 
-$num: 20;
-@while $num < 150 {
-  .d-#{$num} {
-    height: $num +0px !important;
-    line-height: $num +0px !important;
-    width: $num +0px !important;
-  }
-  $num: $num + 10;
-}
+// $num: 20;
+// @while $num < 150 {
+//   .d-#{$num} {
+//     height: $num (+0px) !important;
+//     line-height: $num (+0px) !important;
+//     width: $num (+0px) !important;
+//   }
+//   $num: $num (+ 10);
+// }
 
 // Line height
 
