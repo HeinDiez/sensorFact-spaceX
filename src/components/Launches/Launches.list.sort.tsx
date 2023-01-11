@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import * as MUI from '@mui/material';
+
+// Material UI components
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+
 import { LaunchSortProps } from './launches.interface';
 
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
@@ -30,10 +36,10 @@ export default function LaunchListSort({ setVariables, variables, getLaunches }:
     return (
         <div className="card-header--actions">
             <div>
-                <MUI.Button onClick={handleClick} size="small" variant="text" className="btn-outline-primary d-30 p-0  d-flex align-items-center justify-content-center">
-                    <SortByAlphaIcon className="w-50" />
-                </MUI.Button>
-                <MUI.Menu
+                <Button onClick={handleClick} data-testid="sortbtn" size="small" variant="text" className="btn-outline-primary d-30 p-0  d-flex align-items-center justify-content-center">
+                    <SortByAlphaIcon className="w-50" /> 
+                </Button>
+                <Menu
                     className="dialog-sort-container"
                     anchorEl={anchorEl}
                     keepMounted
@@ -49,11 +55,11 @@ export default function LaunchListSort({ setVariables, variables, getLaunches }:
                     classes={{ list: 'p-0' }}
                     onClose={handleClose}
                 >
-                    <div className="dropdown-menu-lg overflow-hidden p-0">
+                    <div className="dropdown-menu-lg overflow-hidden p-0" data-testid="sort-content">
                         <div className="font-weight-bold px-4 pt-3">Sort</div>
                         <div className="divider" />
-                        <MUI.List component="div" className="nav-neutral-first nav-pills-rounded flex-column p-2">
-                            <MUI.ListItem component="a" button href="#/" onClick={onClickSort}>
+                        <List component="div" className="nav-neutral-first nav-pills-rounded flex-column p-2">
+                            <ListItem component="a" href="#/" onClick={onClickSort}>
                                 <div className="mr-2">
                                     {variables.sort === 'mission_name' ? (
                                         <React.Fragment>{variables.order === 'desc' ? <ArrowUpwardIcon /> : variables.order === 'asc' ? <ArrowDownwardIcon /> : ''}</React.Fragment>
@@ -62,18 +68,18 @@ export default function LaunchListSort({ setVariables, variables, getLaunches }:
                                     )}
                                 </div>
                                 <span className="font-size-md">Mission Name</span>
-                            </MUI.ListItem>
+                            </ListItem>
                             {variables.order && (
-                                <MUI.ListItem component="a" className="text-warning" button href="#/" onClick={onClearSort}>
+                                <ListItem component="a" className="text-warning" button href="#/" onClick={onClearSort}>
                                     <div className="mr-2">
                                         <ClearIcon />
                                     </div>
                                     <span className="font-size-md text-red">Clear</span>
-                                </MUI.ListItem>
+                                </ListItem>
                             )}
-                        </MUI.List>
+                        </List>
                     </div>
-                </MUI.Menu>
+                </Menu>
             </div>
         </div>
     );

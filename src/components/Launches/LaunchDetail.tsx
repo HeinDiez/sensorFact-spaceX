@@ -1,15 +1,20 @@
 import React from 'react';
-import * as MUI from '@mui/material';
 import { useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
+
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+
 import { GET_LAUNCH } from './launches.gql';
 import { Launch } from './launches.interface';
-import { useParams } from 'react-router-dom';
-import Container from '@mui/material/Container';
+import { COMM } from '../../helpers/common';
+
 import ScaleIcon from '@mui/icons-material/Scale';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import RocketIcon from '@mui/icons-material/Rocket';
-import { COMM } from '../../helpers/common';
 
 export default function LaunchDetail() {
     const { id } = useParams();
@@ -35,7 +40,7 @@ export default function LaunchDetail() {
                                         <div className="d-block d-md-flex align-items-start p-5">
                                             <div className="dropzone rounded-circle shadow-sm-dark mr-md-3">
                                                 <div className="avatar-icon-wrapper d-140 rounded-circle m-2">
-                                                    <MUI.Avatar
+                                                    <Avatar
                                                         alt={data && data.launch.links && data.launch.links.mission_patch_small}
                                                         src={data && data.launch.links && data.launch.links.mission_patch_small}
                                                         sx={{ width: '100%', height: '100%' }}
@@ -70,18 +75,18 @@ export default function LaunchDetail() {
                                             </div>
                                         </div>
                                         <div className="p-5">
-                                            <MUI.Grid container spacing={6}>
+                                            <Grid container spacing={6}>
                                                 {data &&
                                                     data.launch.links &&
                                                     data.launch.links.flickr_images &&
                                                     data.launch.links.flickr_images.map((item, i) => (
-                                                        <MUI.Grid item lg={6} key={i}>
-                                                            <MUI.Card>
+                                                        <Grid item lg={6} key={i}>
+                                                            <Card>
                                                                 <img alt="..." className="card-img-top" src={item} />
-                                                            </MUI.Card>
-                                                        </MUI.Grid>
+                                                            </Card>
+                                                        </Grid>
                                                     ))}
-                                            </MUI.Grid>
+                                            </Grid>
                                         </div>
                                     </div>
                                 </div>

@@ -8,7 +8,7 @@ import LaunchesList from './Launches.list';
 import Container from '@mui/material/Container';
 
 function Launches() {
-    const { enqueueSnackbar } = useSnackbar();
+    const notistack = useSnackbar();
     const [variables, setVariables] = useState<Table>({
         limit: 10,
         sort: 'mission_name',
@@ -21,12 +21,12 @@ function Launches() {
         getLaunches();
     }, []);
     if (error) {
-        enqueueSnackbar(`Error 7443: ${error}`, { variant: 'error' });
+        notistack.enqueueSnackbar(`Error 7443: ${error}`, { variant: 'error' });
     }
     return (
         <div className="py-3">
             <Container>
-                <LaunchesList launches={data ? data.launches : []} setVariables={setVariables} variables={variables} getLaunches={getLaunches} lazyloading={loading} />
+                <LaunchesList launches={data ? data.launches : []} setVariables={setVariables} variables={variables} getLaunches={getLaunches} loading={loading} />
             </Container>
         </div>
     );

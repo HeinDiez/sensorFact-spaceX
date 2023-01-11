@@ -1,7 +1,13 @@
 import React from 'react';
-import * as MUI from '@mui/material';
-import Skeleton from '@mui/material/Skeleton';
 
+import TableContainer from '@mui/material/TableContainer';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import TableBody from '@mui/material/TableBody';
+import Skeleton from '@mui/material/Skeleton';
 import Container from '@mui/material/Container';
 
 function LoadingList() {
@@ -9,25 +15,25 @@ function LoadingList() {
     return ( 
         <div>
             <Container>
-                <MUI.TableContainer component={MUI.Paper}>
-                    <MUI.Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <MUI.TableHead>
-                            <MUI.TableRow>
-                                <MUI.TableCell><Skeleton animation="wave" /></MUI.TableCell>
-                                <MUI.TableCell align="right"><Skeleton animation="wave" /></MUI.TableCell>
-                                <MUI.TableCell align="right"><Skeleton animation="wave" /></MUI.TableCell>
-                            </MUI.TableRow>
-                        </MUI.TableHead>
-                        <MUI.TableBody>
-                            {    loadingTimes.map((l, i)=><MUI.TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                    <MUI.TableCell component="th" scope="row"><Skeleton variant="rectangular" width={210} height={48} /></MUI.TableCell>
-                                    <MUI.TableCell align="right"> <Skeleton animation="wave" /></MUI.TableCell>
-                                    <MUI.TableCell align="right"> <Skeleton animation="wave" /></MUI.TableCell>
-                                </MUI.TableRow>
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell><Skeleton animation="wave" /></TableCell>
+                                <TableCell align="right"><Skeleton animation="wave" /></TableCell>
+                                <TableCell align="right"><Skeleton animation="wave" /></TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {    loadingTimes.map((l, i)=><TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                    <TableCell component="th" scope="row"><Skeleton variant="rectangular" width={210} height={48} /></TableCell>
+                                    <TableCell align="right"> <Skeleton animation="wave" /></TableCell>
+                                    <TableCell align="right"> <Skeleton animation="wave" /></TableCell>
+                                </TableRow>
                             )}
-                        </MUI.TableBody>
-                    </MUI.Table>
-                </MUI.TableContainer>
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </Container>
         </div>
     );

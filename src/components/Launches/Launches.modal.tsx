@@ -1,5 +1,9 @@
 import React from 'react';
-import * as MUI from '@mui/material';
+
+import Dialog from '@mui/material/Dialog';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+
 import { LaunchModalProps } from './launches.interface';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import ScaleIcon from '@mui/icons-material/Scale';
@@ -12,7 +16,7 @@ export default function LaunchesModal({ onClose, open, calculatedLaunch }: Launc
     };
     return (
         <div>
-            <MUI.Dialog scroll="body" maxWidth="md" open={open} onClose={onCloseHandler} classes={{ paper: 'w-100 rounded shadow-sm-dark border-0 bg-white' }}>
+            <Dialog scroll="body" maxWidth="md" open={open} onClose={onCloseHandler} classes={{ paper: 'w-100 rounded shadow-sm-dark border-0 bg-white' }}>
                 <div className="hero-wrapper bg-composed-wrapper bg-arielle-smile h-100 rounded-top">
                     <div className="flex-grow-1 w-100 d-flex align-items-center">
                         <div className="bg-composed-wrapper--bg bg-second opacity-3 rounded-top" />
@@ -25,7 +29,7 @@ export default function LaunchesModal({ onClose, open, calculatedLaunch }: Launc
                     </div>
                 </div>
                 <div className="bg-white rounded pt-4 pt-lg-0">
-                    <MUI.Card className="card-box">
+                    <Card className="card-box">
                         <div className="card-header">
                             <div className="card-header--title">
                                 <h4 className="font-size-lg mb-0 py-2 font-weight-bold">Launch Mission</h4>
@@ -36,7 +40,7 @@ export default function LaunchesModal({ onClose, open, calculatedLaunch }: Launc
                                 </div>
                             </div>
                         </div>
-                        <MUI.CardContent>
+                        <CardContent>
                             {calculatedLaunch.map((claunch) => (
                                 <div key={claunch.id}>
                                     <div className="d-flex align-items-center justify-content-between">
@@ -80,10 +84,10 @@ export default function LaunchesModal({ onClose, open, calculatedLaunch }: Launc
                                     <div className="divider my-3" />
                                 </div>
                             ))}
-                        </MUI.CardContent>
-                    </MUI.Card>
+                        </CardContent>
+                    </Card>
                 </div>
-            </MUI.Dialog>
+            </Dialog>
         </div>
     );
 }
