@@ -9,6 +9,8 @@ session. In this assignment, you have limited information and resources.
 Therefore, it is obvious that the solution will be rough and would need some
 polishing at a later stage.
 
+You can access the application through: https://spacex-sensorfact-6hn8w.ondigitalocean.app/
+
 ### Front end
 You can create a simple application using [React](https://reactjs.org/) and
 [TypeScript](https://www.typescriptlang.org/).
