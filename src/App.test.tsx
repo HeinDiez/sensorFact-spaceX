@@ -1,6 +1,29 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor, within, cleanup } from '@testing-library/react';
 import App from './App';
+//import { setupWorker, graphql } from 'msw'
+//import { setupServer } from 'msw/node'
+
+// const server = setupServer(
+//     rest.get(`${ULR}`, (req, res, ctx) => {
+//       return res(ctx.json(data))
+//     }),
+// )
+
+// const worker = setupWorker(
+//   graphql.mutation('Login', (req, res, ctx) => {
+//     const { username } = req.variables
+//     return res(
+//       ctx.data({
+//         user: {
+//           username,
+//           firstName: 'John'
+//         }
+//       })
+//     )
+//   })
+// )
+// worker.start()
 
 function getList () {
     return screen.getAllByTestId('rocket-list')
@@ -24,18 +47,14 @@ describe("Check each element on the page if it exist", () => {
 
      test('Render Application Header without any errors', async () => {
         render(<App />);
-        await waitFor(() => {
-            expect(screen.getByText(/SensorFact/)).toBeInTheDocument();
-        });
-        
+        expect(screen.getByText(/SensorFact/)).toBeInTheDocument();
     });
 
-     test('Render Application Footer without any errors', async () => {
+    test('Render Application Footer without any errors', async () => {
         render(<App />);
         await waitFor(() => {
-            expect(screen.getByText(/Space X Program 2022/)).toBeInTheDocument();
+            expect(screen.getByText(/Space X Program 2023/)).toBeInTheDocument();
         });
-        
     });
 
     test('Launch Component should display a list of rockets.', async () => {

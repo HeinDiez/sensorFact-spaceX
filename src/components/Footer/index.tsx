@@ -7,7 +7,7 @@ export default function Footer() {
                 <div className="app-footer--second text-white">
                     ©{' '}
                     <a href="/" className="text-white" target="_blank" title="spacex" rel="noopener noreferrer">
-                        Space X Program 2022
+                        Space X Program 2023
                     </a>
                 </div>
             </div>
